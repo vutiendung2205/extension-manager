@@ -1,0 +1,48 @@
+{
+  "name": "Extension manager",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "author": "poponedie",
+  "icons": {
+    "128": "logo128.png"
+  },
+  "permissions": [
+    "management"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "./static/js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "./static/js/content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": "logo128.png",
+    "default_popup": "popup.html"
+  },
+  "options_page": "index.html",
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "static/*",
+        "images/*",
+        "icons/*",
+        "*.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "extension_ids": []
+    }
+  ]
+}
