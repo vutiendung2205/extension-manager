@@ -15,5 +15,10 @@ B3: Bấm vào "Tải tiện ích đã giải nén" (Load unpacked) rồi trỏ 
 
 ![image](https://user-images.githubusercontent.com/20717615/146961651-533bbb25-07f5-4b0f-b19c-c19fdfd5c75d.png)
 
+Tìm kiếm, phân loại các extension
+
 ![image](https://user-images.githubusercontent.com/20717615/146961745-0753542c-d350-4cc7-8ade-45a606fce895.png)
 
+Hiển thị thông tin cơ bản của extension
+
+![image](https://user-images.githubusercontent.com/20717615/146961927-5b02c09a-db09-444a-a069-4d920c12d55e.png)
