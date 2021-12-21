@@ -1,4 +1,5 @@
 import { createGenerateClassName, jssPreset, StylesProvider } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { create } from 'jss';
 import jssExtend from 'jss-plugin-extend';
 import rtl from 'jss-rtl';
@@ -17,17 +18,19 @@ const jss = create({
 });
 
 const generateClassName = createGenerateClassName();
-
+const theme = createTheme({});
 const App = () => {
 	return (
 		<AppContext.Provider value={{}}>
-			<StylesProvider jss={jss} generateClassName={generateClassName}>
-				<Provider store={store}>
-					<PersistGate loading={null} persistor={persistor}>
-						<PopupApp />
-					</PersistGate>
-				</Provider>
-			</StylesProvider>
+			<ThemeProvider theme={theme}>
+				<StylesProvider jss={jss} generateClassName={generateClassName}>
+					<Provider store={store}>
+						<PersistGate loading={null} persistor={persistor}>
+							<PopupApp />
+						</PersistGate>
+					</Provider>
+				</StylesProvider>
+			</ThemeProvider>
 		</AppContext.Provider>
 	);
 };
