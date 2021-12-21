@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import ExtensionsModule from './ExtensionsModule';
 import ExtensionsTable from './ExtensionsTable';
-
+import ExtensionDetail from './ExtensionDetail';
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto'
@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
 }));
 const Content = () => {
 	const classes = useStyles();
-	const { view } = useSelector(state => state.App.settings);
+	const { view, page, detailId } = useSelector(state => state.App.settings);
+	console.log('🚀 ~ Content ~ page', page);
 	const display = viewState => {
 		switch (viewState) {
 			case 'viewList':
@@ -27,6 +28,10 @@ const Content = () => {
 				return <ExtensionsTable />;
 		}
 	};
+
+	if (detailId) {
+		return <ExtensionDetail />;
+	}
 	return (
 		<Box sx={{ width: '100%', maxHeight: '400px' }} className={classes.root}>
 			{display(view)}

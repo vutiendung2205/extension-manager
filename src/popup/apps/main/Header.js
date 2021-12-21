@@ -7,8 +7,11 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeView } from '../store/settingsSlice';
+import { changeView, setDetailId } from '../store/settingsSlice';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -45,6 +48,11 @@ const useStyles = makeStyles(theme => ({
 			outline: 'none',
 			border: 'none'
 		}
+	},
+	button: {
+		position: 'fixed',
+		left: 0,
+		margin: 6
 	}
 }));
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
@@ -64,32 +72,45 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 const Header = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	const { view } = useSelector(state => state.App.settings);
+	const { view, detailId } = useSelector(state => state.App.settings);
 
 	const handleChange = (event, nextView) => {
 		dispatch(changeView(nextView));
 	};
+	const handleClick = () => {
+		dispatch(setDetailId(''));
+	};
 	return (
 		<React.Fragment>
 			<Box sx={{ width: '100%', height: '50px' }} className={classes.root}>
+				<Stack direction="row" spacing={1} className={classes.button}>
+					{detailId ? (
+						<IconButton aria-label="back" className={classes.noBorder} onClick={handleClick}>
+							<ArrowBackIcon />
+						</IconButton>
+					) : null}
+				</Stack>
+
 				<Typography variant="h6" sx={{ lineHeight: '50px' }} className={classes.Typography}>
 					Extension Manager
 				</Typography>
-				<StyledToggleButtonGroup
-					size="small"
-					value={view}
-					exclusive
-					onChange={handleChange}
-					aria-label="view"
-					className={classes.buttonGroup}
-				>
-					<ToggleButton value="viewList" aria-label="viewList" className={classes.noBorder}>
-						<ViewListIcon />
-					</ToggleButton>
-					<ToggleButton value="viewModule" aria-label="viewModule" className={classes.noBorder}>
-						<ViewModuleIcon />
-					</ToggleButton>
-				</StyledToggleButtonGroup>
+				{!detailId ? (
+					<StyledToggleButtonGroup
+						size="small"
+						value={view}
+						exclusive
+						onChange={handleChange}
+						aria-label="view"
+						className={classes.buttonGroup}
+					>
+						<ToggleButton value="viewList" aria-label="viewList" className={classes.noBorder}>
+							<ViewModuleIcon />
+						</ToggleButton>
+						<ToggleButton value="viewModule" aria-label="viewModule" className={classes.noBorder}>
+							<ViewListIcon />
+						</ToggleButton>
+					</StyledToggleButtonGroup>
+				) : null}
 			</Box>
 		</React.Fragment>
 	);

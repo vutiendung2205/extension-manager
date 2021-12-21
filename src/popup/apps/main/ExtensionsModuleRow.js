@@ -2,7 +2,7 @@
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ExtensionTableRow from './ExtensionTableRow';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
@@ -15,6 +15,8 @@ import ListItemText from '@mui/material/ListItemText';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
+import { setDetailId } from '../store/settingsSlice';
+import { changeStatusExtension, removeExtension } from '../store/extensionsSlice';
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto',
@@ -53,11 +55,23 @@ const stringAvatar = name => {
 };
 const ExtensionsModuleRow = props => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const extensions = useSelector(state => state.App.extensions);
 	const { type, title } = props;
-	// if (!extensions) {
-	// 	return <></>;
-	// }
+	const handleClick = extensionId => {
+		dispatch(setDetailId(extensionId));
+	};
+	const handleChangeStatus = (event, extension) => {
+		event.stopPropagation();
+		console.log(extension);
+		chrome.management.setEnabled(extension.id, !extension.enabled, () => {
+			if (extension.type != 'theme') {
+				dispatch(changeStatusExtension(extension.id));
+			} else {
+				dispatch(removeExtension(extension.id));
+			}
+		});
+	};
 	return (
 		<React.Fragment>
 			<Divider textAlign="left">{title}</Divider>
@@ -73,7 +87,7 @@ const ExtensionsModuleRow = props => {
 						const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
 						return (
 							<li key={extension.id}>
-								<ListItem button={true}>
+								<ListItem button={true} onClick={() => handleClick(extension.id)}>
 									<ListItemAvatar>
 										<Avatar
 											alt={extension.name}
@@ -82,6 +96,7 @@ const ExtensionsModuleRow = props => {
 											className={`${classes.nowrapLine} ${
 												extension.enabled ? classes.enable : classes.disable
 											}`}
+											onClick={event => handleChangeStatus(event, extension)}
 										/>
 									</ListItemAvatar>
 									<ListItemText

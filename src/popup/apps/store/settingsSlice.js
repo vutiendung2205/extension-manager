@@ -4,16 +4,21 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 const settingsSlice = createSlice({
 	name: 'settings',
 	initialState: {
-		view: 'viewList'
+		view: 'viewList',
+		page: 'pageView',
+		detailId: ''
 	},
 	reducers: {
 		changeView: (state, action) => {
 			state.view = action.payload;
+		},
+		setDetailId: (state, action) => {
+			state.detailId = action.payload;
 		}
 	},
 	extraReducers: {}
 });
 
-export const { changeView } = settingsSlice.actions;
+export const { changeView, setDetailId } = settingsSlice.actions;
 
 export default settingsSlice.reducer;

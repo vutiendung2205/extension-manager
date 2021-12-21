@@ -68,33 +68,6 @@ const ExtensionsModule = () => {
 			{dataBox.map((val, index) => (
 				<ExtensionsModuleRow key={index} {...val} />
 			))}
-			{/* <Divider textAlign="left">Extension</Divider>
-			<List
-				sx={{
-					width: '100%',
-					bgcolor: 'background.paper'
-				}}
-			>
-				{extensions.map(extension => {
-					const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
-					return (
-						<li key={extension.id}>
-							<ListItem button={true}>
-								<ListItemAvatar>
-									<Avatar alt={extension.name} src={extensionIconUrl} />
-								</ListItemAvatar>
-								<ListItemText
-									primary={extension.name}
-									secondary={extension.description}
-									className={classes.nowrapLine}
-									secondaryTypographyProps={{ className: classes.nowrapLine }}
-								/>
-							</ListItem>
-							<Divider />
-						</li>
-					);
-				})}
-			</List> */}
 		</Box>
 	);
 };
