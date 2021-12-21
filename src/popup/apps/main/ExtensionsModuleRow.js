@@ -1,22 +1,17 @@
 /* global chrome */
-import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ExtensionTableRow from './ExtensionTableRow';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
-import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
+
 import { setDetailId } from '../store/settingsSlice';
 import { changeStatusExtension, removeExtension } from '../store/extensionsSlice';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto',

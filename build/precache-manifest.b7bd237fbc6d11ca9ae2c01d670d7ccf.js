@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/logo128.png"
   },
   {
-    "revision": "f39ca5c5195588a0fd10e709bb5a182e",
+    "revision": "1eafdedeb589a050e73d453b4c0fda09",
     "url": "/manifest.json"
   },
   {
@@ -28,23 +28,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/popup.html"
   },
   {
-    "revision": "f7024f4fb189523167d5",
+    "revision": "0a7cc804fe36cb454da5",
     "url": "/static/css/index.834c56f7.css"
   },
   {
-    "revision": "1f1e181ae01081d6ade8",
+    "revision": "1100910e586344776fb3",
     "url": "/static/js/background.js"
   },
   {
-    "revision": "ab7b2c5b38fe74b77f7a",
+    "revision": "7dcda324ef84a1ca1bfb",
     "url": "/static/js/content.js"
   },
   {
-    "revision": "a91498d14f83ed927159",
+    "revision": "d9fa441222f2425d12dc",
     "url": "/static/js/index.2d2af0bd.js"
   },
   {
-    "revision": "f7024f4fb189523167d5",
+    "revision": "0a7cc804fe36cb454da5",
     "url": "/static/js/index.834c56f7.js"
   },
   {
@@ -52,7 +52,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/index.834c56f7.js.LICENSE.txt"
   },
   {
-    "revision": "35d0369c46350b0d1fdc",
+    "revision": "29f4527386761272f728",
     "url": "/static/js/index.8db08bf7.js"
   },
   {

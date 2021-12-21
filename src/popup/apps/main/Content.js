@@ -6,10 +6,10 @@ import ExtensionsModule from './ExtensionsModule';
 import ExtensionsTable from './ExtensionsTable';
 import ExtensionDetail from './ExtensionDetail';
 import Search from './Search';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto'
-		// backgroundColor: '#FBFFE2'
 	},
 	Typography: {
 		textAlign: 'center'

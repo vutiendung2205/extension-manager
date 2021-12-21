@@ -4,7 +4,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -18,7 +17,6 @@ import { changeStatusExtension, removeExtension } from '../store/extensionsSlice
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto'
-		// backgroundColor: '#FBFFE2'
 	},
 	Typography: {
 		textAlign: 'center'
@@ -39,10 +37,14 @@ const stringAvatar = name => {
 const ExtensionDetail = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+
 	const { detailId } = useSelector(state => state.App.settings);
 	const extensions = useSelector(state => state.App.extensions);
+
 	const extensionDetail = extensions.filter(extension => extension.id === detailId)[0];
 	const { enabled } = extensionDetail;
+	const extensionIconUrl = extensionDetail.icons ? extensionDetail.icons[extensionDetail.icons.length - 1].url : '';
+
 	const handleChange = event => {
 		chrome.management.setEnabled(extensionDetail.id, !extensionDetail.enabled, () => {
 			dispatch(changeStatusExtension(detailId));
@@ -53,7 +55,7 @@ const ExtensionDetail = () => {
 			dispatch(removeExtension(extensionDetail.id));
 		});
 	};
-	const extensionIconUrl = extensionDetail.icons ? extensionDetail.icons[extensionDetail.icons.length - 1].url : '';
+
 	return (
 		<Box sx={{ width: '100%', maxHeight: '400px' }} className={classes.root}>
 			<Box sx={{ my: 2, mx: 2 }}>

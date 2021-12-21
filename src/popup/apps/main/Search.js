@@ -11,20 +11,15 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import { getSearchKey, getType } from '../store/settingsSlice';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto',
 		padding: '10px',
 		height: '80px'
-		// backgroundColor: '#FBFFE2'
 	}
 }));
-const Item = styled(Paper)(({ theme }) => ({
-	...theme.typography.body2,
-	padding: theme.spacing(1),
-	textAlign: 'center',
-	color: theme.palette.text.secondary
-}));
+
 const Search = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();

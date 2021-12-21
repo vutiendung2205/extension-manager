@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import { changeStatusExtension, removeExtension } from '../store/extensionsSlice';
-import Typography from '@mui/material/Typography';
+
 const useStyles = makeStyles(theme => ({
 	Typography: {
 		textAlign: 'center'
@@ -68,24 +68,29 @@ const ExtensionTableRow = props => {
 			<Divider textAlign="left">{title}</Divider>
 
 			<Grid container spacing={3}>
-				<Grid item xs="auto"></Grid>
-				{extensionArr.map(extension => {
-					const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
-					return (
-						<Grid item xs="auto" key={extension.id}>
-							<Tooltip title={extension.name}>
-								<IconButton className={classes.noBorder} onClick={() => handleClick(extension)}>
-									<Avatar
-										alt={extension.name}
-										src={extensionIconUrl}
-										className={extension.enabled ? classes.enable : classes.disable}
-										{...stringAvatar(extension.name)}
-									/>
-								</IconButton>
-							</Tooltip>
-						</Grid>
-					);
-				})}
+				{extensionArr.length > 0 ? (
+					extensionArr.map(extension => {
+						const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
+						return (
+							<Grid item xs="auto" key={extension.id}>
+								<Tooltip title={extension.name}>
+									<IconButton className={classes.noBorder} onClick={() => handleClick(extension)}>
+										<Avatar
+											alt={extension.name}
+											src={extensionIconUrl}
+											className={extension.enabled ? classes.enable : classes.disable}
+											{...stringAvatar(extension.name)}
+										/>
+									</IconButton>
+								</Tooltip>
+							</Grid>
+						);
+					})
+				) : (
+					<Grid item>
+						<div style={{ height: '16px', width: '100%' }}></div>
+					</Grid>
+				)}
 			</Grid>
 		</React.Fragment>
 	);
