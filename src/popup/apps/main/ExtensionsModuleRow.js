@@ -58,12 +58,17 @@ const ExtensionsModuleRow = props => {
 	const dispatch = useDispatch();
 	const extensions = useSelector(state => state.App.extensions);
 	const { type, title } = props;
+
+	const { search } = useSelector(state => state.App.settings);
+	const extensionArr = extensions
+		.filter(extension => extension.type == type)
+		.filter(extension => extension.name.toLowerCase().includes(search));
+
 	const handleClick = extensionId => {
 		dispatch(setDetailId(extensionId));
 	};
 	const handleChangeStatus = (event, extension) => {
 		event.stopPropagation();
-		console.log(extension);
 		chrome.management.setEnabled(extension.id, !extension.enabled, () => {
 			if (extension.type != 'theme') {
 				dispatch(changeStatusExtension(extension.id));
@@ -81,7 +86,7 @@ const ExtensionsModuleRow = props => {
 					bgcolor: 'background.paper'
 				}}
 			>
-				{extensions
+				{extensionArr
 					.filter(extension => extension.type == type)
 					.map(extension => {
 						const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';

@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import { changeStatusExtension, removeExtension } from '../store/extensionsSlice';
-
+import Typography from '@mui/material/Typography';
 const useStyles = makeStyles(theme => ({
 	Typography: {
 		textAlign: 'center'
@@ -47,7 +47,13 @@ const ExtensionTableRow = props => {
 	const { type, title } = props;
 	const classes = useStyles();
 	const dispatch = useDispatch();
+
 	const extensions = useSelector(state => state.App.extensions);
+	const { search } = useSelector(state => state.App.settings);
+	const extensionArr = extensions
+		.filter(extension => extension.type == type)
+		.filter(extension => extension.name.toLowerCase().includes(search));
+
 	const handleClick = extension => {
 		chrome.management.setEnabled(extension.id, !extension.enabled, () => {
 			if (extension.type != 'theme') {
@@ -60,26 +66,26 @@ const ExtensionTableRow = props => {
 	return (
 		<React.Fragment>
 			<Divider textAlign="left">{title}</Divider>
+
 			<Grid container spacing={3}>
-				{extensions
-					.filter(extension => extension.type == type)
-					.map(extension => {
-						const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
-						return (
-							<Grid item xs="auto" key={extension.id}>
-								<Tooltip title={extension.name}>
-									<IconButton className={classes.noBorder} onClick={() => handleClick(extension)}>
-										<Avatar
-											alt={extension.name}
-											src={extensionIconUrl}
-											className={extension.enabled ? classes.enable : classes.disable}
-											{...stringAvatar(extension.name)}
-										/>
-									</IconButton>
-								</Tooltip>
-							</Grid>
-						);
-					})}
+				<Grid item xs="auto"></Grid>
+				{extensionArr.map(extension => {
+					const extensionIconUrl = extension.icons ? extension.icons[extension.icons.length - 1].url : '';
+					return (
+						<Grid item xs="auto" key={extension.id}>
+							<Tooltip title={extension.name}>
+								<IconButton className={classes.noBorder} onClick={() => handleClick(extension)}>
+									<Avatar
+										alt={extension.name}
+										src={extensionIconUrl}
+										className={extension.enabled ? classes.enable : classes.disable}
+										{...stringAvatar(extension.name)}
+									/>
+								</IconButton>
+							</Tooltip>
+						</Grid>
+					);
+				})}
 			</Grid>
 		</React.Fragment>
 	);

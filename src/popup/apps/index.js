@@ -7,6 +7,7 @@ import { makeStyles } from '@mui/styles';
 import Content from './main/Content';
 import { getExtensions } from './store/extensionsSlice';
 import { setDetailId } from './store/settingsSlice';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		width: '480px',

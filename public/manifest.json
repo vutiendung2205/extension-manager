@@ -1,6 +1,7 @@
 {
   "name": "Extension manager",
   "version": "0.0.1",
+  "description": "Quản lý extension",
   "manifest_version": 3,
   "author": "poponedie",
   "icons": {

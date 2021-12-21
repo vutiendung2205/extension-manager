@@ -34,14 +34,23 @@ const dataBox = [
 const ExtensionsTable = () => {
 	const classes = useStyles();
 	const extensions = useSelector(state => state.App.extensions);
+	const { type } = useSelector(state => state.App.settings);
 	if (!extensions) {
 		return <></>;
 	}
 	return (
-		<Box sx={{ width: '100%', height: '400px' }} p="10px" className={classes.root}>
-			{dataBox.map((val, index) => (
-				<ExtensionTableRow key={index} {...val} />
-			))}
+		<Box sx={{ width: '100%', height: '320px' }} p="10px" className={classes.root}>
+			{dataBox
+				.filter(data => {
+					if (type === 'all') {
+						return data;
+					} else {
+						return data.type === type;
+					}
+				})
+				.map((val, index) => (
+					<ExtensionTableRow key={index} {...val} />
+				))}
 		</Box>
 	);
 };

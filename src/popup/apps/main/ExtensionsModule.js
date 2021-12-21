@@ -3,19 +3,9 @@ import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ExtensionTableRow from './ExtensionTableRow';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Grid from '@mui/material/Grid';
-import Tooltip from '@mui/material/Tooltip';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
+
 import ExtensionsModuleRow from './ExtensionsModuleRow';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		margin: 'auto',
@@ -23,21 +13,6 @@ const useStyles = makeStyles(theme => ({
 		'&::-webkit-scrollbar': {
 			display: 'none'
 		}
-	},
-	noBorder: {
-		'&:hover': {
-			outline: 'none',
-			border: 'none'
-		},
-		'&:focus': {
-			outline: 'none',
-			border: 'none'
-		}
-	},
-	nowrapLine: {
-		whiteSpace: 'nowrap',
-		overflow: 'hidden',
-		textOverflow: 'ellipsis'
 	}
 }));
 const dataBox = [
@@ -60,14 +35,24 @@ const dataBox = [
 const ExtensionsModule = () => {
 	const classes = useStyles();
 	const extensions = useSelector(state => state.App.extensions);
+	const { type } = useSelector(state => state.App.settings);
+
 	if (!extensions) {
 		return <></>;
 	}
 	return (
-		<Box sx={{ width: '100%', height: '400px' }} p="10px" className={classes.root}>
-			{dataBox.map((val, index) => (
-				<ExtensionsModuleRow key={index} {...val} />
-			))}
+		<Box sx={{ width: '100%', height: '320px' }} p="10px" className={classes.root}>
+			{dataBox
+				.filter(data => {
+					if (type === 'all') {
+						return data;
+					} else {
+						return data.type === type;
+					}
+				})
+				.map((val, index) => (
+					<ExtensionsModuleRow key={index} {...val} />
+				))}
 		</Box>
 	);
 };

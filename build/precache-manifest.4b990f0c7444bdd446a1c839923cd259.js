@@ -28,35 +28,35 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/popup.html"
   },
   {
-    "revision": "bb14ba406b7bee010fd3",
+    "revision": "f7024f4fb189523167d5",
     "url": "/static/css/index.834c56f7.css"
   },
   {
-    "revision": "eb76c1087acdcc28c910",
+    "revision": "1f1e181ae01081d6ade8",
     "url": "/static/js/background.js"
   },
   {
-    "revision": "3e268bf0c7e195f22ead",
+    "revision": "ab7b2c5b38fe74b77f7a",
     "url": "/static/js/content.js"
   },
   {
-    "revision": "59e50971755d7634100b",
+    "revision": "a91498d14f83ed927159",
     "url": "/static/js/index.2d2af0bd.js"
   },
   {
-    "revision": "bb14ba406b7bee010fd3",
+    "revision": "f7024f4fb189523167d5",
     "url": "/static/js/index.834c56f7.js"
   },
   {
-    "revision": "71dcf57f3f3901744dadc68367c77c7e",
+    "revision": "c4d8c5abb040985438207b990a6d2ee6",
     "url": "/static/js/index.834c56f7.js.LICENSE.txt"
   },
   {
-    "revision": "45531e16caa7d49dae99",
+    "revision": "35d0369c46350b0d1fdc",
     "url": "/static/js/index.8db08bf7.js"
   },
   {
-    "revision": "6cbb71c108d45cccc937",
+    "revision": "2ee77c909963afd7c84a",
     "url": "/static/js/main.js"
   }
 ]);
